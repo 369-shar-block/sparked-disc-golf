@@ -1,0 +1,27 @@
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Home from './pages/Home'
+import CourseDetailPage from './pages/CourseDetailPage'
+
+function App() {
+  const location = useLocation()
+
+  return (
+    <div className="min-h-screen flex flex-col bg-coal text-white font-body">
+      <Navbar />
+      <main className="flex-1">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/course/:id" element={<CourseDetailPage />} />
+          </Routes>
+        </AnimatePresence>
+      </main>
+      <Footer />
+    </div>
+  )
+}
+
+export default App
